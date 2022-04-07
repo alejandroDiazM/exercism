@@ -25,16 +25,10 @@ func HasPassed(date string) bool {
 
 // IsAfternoonAppointment returns whether a time is in the afternoon
 func IsAfternoonAppointment(date string) bool {
-	dateTime, _ := time.Parse("Thursday, July 25, 2019 13:45:00", date)
-	hour := dateTime.Hour()
-	minute := dateTime.Minute()
-
+	d, _ := time.Parse("Monday, January 2, 2006 15:04:05", date)
+	hour := d.Hour()
 	if hour >= 12 && hour < 18 {
-		if minute != 00 {
-			return true
-		} else {
-			return false
-		}
+		return true
 	} else {
 		return false
 	}
@@ -50,11 +44,12 @@ func Description(date string) string {
 	hour := strconv.Itoa(dateTime.Hour())
 	minute := strconv.Itoa(dateTime.Minute())
 
-	descr := ("You have an appointment on " + weekDay + ", " + month + ", " + day + ", " + year + ", at " + hour + ":" + minute)
+	descr := ("You have an appointment on " + weekDay + ", " + month + " " + day + ", " + year + ", at " + hour + ":" + minute + ".")
 	return descr
 }
 
 // AnniversaryDate returns a Time with this year's anniversary
 func AnniversaryDate() time.Time {
-	panic("Please implement the AnniversaryDate function")
+	now := time.Now()
+	return time.Date(now.Year(), time.September, 15, 0, 0, 0, 0, time.UTC)
 }
