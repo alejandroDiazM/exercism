@@ -4,4 +4,3 @@ def score(word):
     for letter in word.upper():
         points += letter_value[letter]
     return(points)
-    
